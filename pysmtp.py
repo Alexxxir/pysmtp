@@ -37,7 +37,6 @@ def send(sock, command, expect_answer, to_base64=False, already_encode=False):
         command = base64.b64encode(command)
     sock.send(b'%s\n' % command)
     answer = sock.recv(1024).decode()
-    print(answer)
     if (ServerResponse(int(answer.split()[0])) != expect_answer and
             expect_answer != 0):
         raise IncorrectAnswer(answer)
